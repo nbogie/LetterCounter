@@ -1,25 +1,55 @@
 package org.academy.lettercounter;
 
-import java.util.List;
+import java.util.*;
 
 public class LetterCounter {
+    Map<Character, Integer> counts;
+
     public LetterCounter() {
+        counts = new HashMap<>();
     }
 
     public void countAll(String word) {
-        throw new RuntimeException("Not implemented");
+        for (char c : word.toCharArray()) {
+            countOneLetter(c);
+        }
     }
 
     public List<String> generateReport() {
-        throw new RuntimeException("Not implemented");
+        List<String> strings = new ArrayList<>();
+        Set<Character> keys = counts.keySet();
+
+        for (Character key : keys) {
+            strings.add(key + ": " + counts.get(key).toString());
+        }
+        //sort alphabetically
+        Collections.sort(strings);
+        return strings;
     }
 
     public int getCountForLetter(char letter) {
-        throw new RuntimeException("Not implemented");
+        Character lowerLetter = Character.toLowerCase(letter);
+        Integer result = counts.get(lowerLetter);
+        if (result == null) {
+            return 0;
+        }
+        return result;
     }
 
     public void countOneLetter(Character inputLetter) {
-        throw new RuntimeException("Not implemented");
+        Character lowerLetter = Character.toLowerCase(inputLetter);
+        if (!LetterCounter.isLetter(lowerLetter)) {
+            return;
+        }
+        if (counts.containsKey(lowerLetter)) {
+            counts.replace(lowerLetter, counts.get(lowerLetter) + 1);
+        } else {
+            counts.put(lowerLetter, 1);
+        }
+    }
+
+    private static boolean isLetter(Character lowerLetter) {
+        return Character.isLetter(lowerLetter);
     }
 
 }
