@@ -16,15 +16,15 @@ public class LetterCounter {
     }
 
     public List<String> generateReport() {
-        List<String> strings = new ArrayList<>();
-        Set<Character> keys = counts.keySet();
+        List<String> outputStrings = new ArrayList<>();
+        Set<Character> letters = counts.keySet();
 
-        for (Character key : keys) {
-            strings.add(key + ": " + counts.get(key).toString());
+        for (Character letter : letters) {
+            outputStrings.add(letter + ": " + counts.get(letter).toString());
         }
         //sort alphabetically
-        Collections.sort(strings);
-        return strings;
+        Collections.sort(outputStrings);
+        return outputStrings;
     }
 
     public int getCountForLetter(char letter) {
