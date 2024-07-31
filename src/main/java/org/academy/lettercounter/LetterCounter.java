@@ -22,18 +22,14 @@ public class LetterCounter {
         for (Character letter : letters) {
             outputStrings.add(letter + ": " + counts.get(letter).toString());
         }
-        //sort alphabetically
+        //Sort output lines alphabetically for easier testing
         Collections.sort(outputStrings);
         return outputStrings;
     }
 
     public int getCountForLetter(char letter) {
         Character lowerLetter = Character.toLowerCase(letter);
-        Integer result = counts.get(lowerLetter);
-        if (result == null) {
-            return 0;
-        }
-        return result;
+        return counts.getOrDefault(lowerLetter, 0);
     }
 
     public void countOneLetter(Character inputLetter) {
@@ -42,13 +38,16 @@ public class LetterCounter {
             return;
         }
         if (counts.containsKey(lowerLetter)) {
+
             counts.replace(lowerLetter, counts.get(lowerLetter) + 1);
         } else {
             counts.put(lowerLetter, 1);
         }
     }
 
+    //(An unnecessary function, given Character.isLetter exists.)
     private static boolean isLetter(Character lowerLetter) {
+
         return Character.isLetter(lowerLetter);
     }
 
