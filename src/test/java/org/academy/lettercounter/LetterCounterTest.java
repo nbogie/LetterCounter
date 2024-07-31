@@ -41,7 +41,6 @@ class LetterCounterTest {
         counter.countOneLetter('!');
         assertEquals(0, counter.getCountForLetter('!'));
         assert (counter.generateReport().isEmpty());
-
     }
 
     @Test
